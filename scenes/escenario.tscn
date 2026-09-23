@@ -1,3 +1,23 @@
 [gd_scene format=3 uid="uid://bvgyeum445sp"]
 
+[ext_resource type="PackedScene" uid="uid://dddcg7snarr28" path="res://scenes/player.tscn" id="1_7fdjr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tsy18"]
+size = Vector3(19.098473, 1, 19.708496)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7fdjr"]
+points = PackedVector3Array(9.686155, -0.6564159, -10.010615, 9.689951, 0.59491104, 10.010615, -9.703718, 0.59491104, 10.010615, 9.689951, -0.6564159, 10.010615, 9.689951, 0.59491104, -10.010615, -9.703718, -0.6564159, -10.010615, -9.703718, 0.59491104, -10.010615, -9.703718, -0.6564159, 10.010615, 9.689951, -0.6564159, -5.0053077)
+
 [node name="Node3D" type="Node3D" unique_id=613542987]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=417341105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23687363, -0.5015509, -0.06659889)
+mesh = SubResource("BoxMesh_tsy18")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1400125560]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1272655753]
+shape = SubResource("ConvexPolygonShape3D_7fdjr")
+
+[node name="CharacterBody3D2" parent="." unique_id=924079880 instance=ExtResource("1_7fdjr")]
+transform = Transform3D(-0.18626924, 0, -0.98249876, 0, 1, 0, 0.98249876, 0, -0.18626924, 1.3711433, 1.4096215, -1.5492349)
