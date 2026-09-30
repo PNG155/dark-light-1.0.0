@@ -1,52 +1,75 @@
 [gd_scene format=3 uid="uid://dddcg7snarr28"]
 
-[ext_resource type="Texture2D" uid="uid://bwdob5vjoi1kd" path="res://sprites/heart_beat_icono-sin fondo.png" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://l25p3owhtv5d" path="res://scenes/gun.tscn" id="1_3vyb7"]
 
 [sub_resource type="GDScript" id="GDScript_3vyb7"]
 script/source = "extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const velocidad = 10
+const velocidad_de_salto = 10
+var direccion:Vector3
+#camara
+var sensibilidad:float = 0.01
+var puede_mover_camara:bool = false
+@onready var camara:Camera3D = $head/Camera3D
 
+func _ready() -> void:
+	puede_mover_camara = true
+
+func _process(delta):
+	ocultar_raton()
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed(\"space\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector(\"a\", \"d\", \"w\", \"s\")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	caminar()
 	move_and_slide()
+
+	if Input.is_action_just_pressed(\"space\") and is_on_floor():
+		velocity.y = velocidad_de_salto
+
+func _input(event) -> void: 
+	mover_camara(event)
+
+func caminar():
+	direccion = transform.basis * Vector3(Input.get_axis(\"a\",\"d\"), 0, Input.get_axis(\"w\", \"s\")).normalized()
+	
+	velocity.x = direccion.x * velocidad  
+	velocity.z = direccion.z * velocidad 
+
+func mover_camara(event):
+	if event is InputEventMouseMotion and puede_mover_camara:
+		rotate_y(-event.relative.x * sensibilidad)
+		camara.rotate_x(-event.relative.y * sensibilidad)
+		camara.rotation.x = clamp(camara.rotation.x, deg_to_rad(-90), deg_to_rad(75))
+
+func ocultar_raton():
+	if Input.is_action_just_pressed(\"q\"):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 "
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tsy18"]
 height = 1.9697266
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=924079880]
+collision_mask = 2
 script = SubResource("GDScript_3vyb7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1442426518]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0766602, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70577025, 0)
 shape = SubResource("CapsuleShape3D_tsy18")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=332636821]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0)
-texture = ExtResource("2_g2els")
+[node name="head" type="Node3D" parent="." unique_id=920794625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=340684770]
-transform = Transform3D(1, 0, 0, 0, 0.93909425, 0.3436597, 0, -0.3436597, 0.93909425, 0, 2.6, 2.25)
-fov = 82.5
+[node name="Camera3D" type="Camera3D" parent="head" unique_id=340684770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32078266, 0)
+fov = 68.0
+
+[node name="Node3D" parent="head" unique_id=1015431444 instance=ExtResource("1_3vyb7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.6418695)
