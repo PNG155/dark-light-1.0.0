@@ -1,7 +1,94 @@
 [gd_scene format=3 uid="uid://l25p3owhtv5d"]
 
+[ext_resource type="Script" uid="uid://bhod2j5idfeyg" path="res://scripts/gun.gd" id="1_gp1hk"]
 [ext_resource type="Texture2D" uid="uid://dmuj8y6bbmaqu" path="res://sprites/GUN.png" id="1_vk1bi"]
 [ext_resource type="Shader" uid="uid://0l5op8hs26yo" path="res://shaders/gun.gdshader" id="2_og67c"]
+[ext_resource type="Texture2D" uid="uid://b6veohqg3jtsj" path="res://sprites/Sprite-0001.png" id="3_qd4js"]
+
+[sub_resource type="Animation" id="Animation_gp1hk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-96.50003, -19.499983)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6.108333, 5.708333)]
+}
+
+[sub_resource type="Animation" id="Animation_qd4js"]
+resource_name = "new_animation"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3),
+"transitions": PackedFloat32Array(0.4, 1.624505, 1),
+"update": 0,
+"values": [Vector2(-96.50003, -19.499983), Vector2(-71, 16.255), Vector2(-96.50003, -19.499983)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3),
+"transitions": PackedFloat32Array(0.4, 1.624505, 1),
+"update": 0,
+"values": [0.0, 0.15009831567151274, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06632236, 0.26666668, 0.3),
+"transitions": PackedFloat32Array(0.4, 0.6155708, 0.42044747, 1),
+"update": 0,
+"values": [Vector2(6.108333, 5.708333), Vector2(6.973, 6.517), Vector2(6.233, 5.824), Vector2(6.108333, 5.708333)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6b133"]
+_data = {
+&"RESET": SubResource("Animation_gp1hk"),
+&"new_animation": SubResource("Animation_qd4js")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tsy18"]
 shader = ExtResource("2_og67c")
@@ -21,6 +108,7 @@ shader_parameter/scan_line_strength = -12.0
 shader_parameter/pixel_strength = -3.5349999779125
 
 [node name="gun" type="Node3D" unique_id=1015431444]
+script = ExtResource("1_gp1hk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=925617663]
 
@@ -42,7 +130,27 @@ position = Vector2(-96.50003, -19.499983)
 scale = Vector2(6.108333, 5.708333)
 texture = ExtResource("1_vk1bi")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Sprite2D" unique_id=2057686504]
+libraries/ = SubResource("AnimationLibrary_6b133")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1874595789]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -64.0
+offset_right = 68.99994
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_qd4js")
+
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1463089670]
 material = SubResource("ShaderMaterial_tsy18")
-offset_right = 1154.0
-offset_bottom = 650.0
+offset_left = -20.0
+offset_top = -21.0
+offset_right = 1622.0
+offset_bottom = 914.0

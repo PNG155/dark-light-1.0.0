@@ -12,53 +12,30 @@ var direccion:Vector3
 #camara
 var sensibilidad:float = 0.01
 var puede_mover_camara:bool = false
-var salto_doble:int = 1
-var coyote_timer_active := true 
 @onready var camara:Camera3D = $head/Camera3D
 
 func _ready() -> void:
 	puede_mover_camara = true
 
-func _process(_delta):
+func _process(delta):
 	ocultar_raton()
-	maximizar_pantalla()
 
 func _physics_process(delta: float) -> void:
-	caminar()
-
-	if is_on_floor():
-		salto_doble = 1
-		coyote_timer_active = true
-		$coyotetimer.stop()
-	else:
+	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
-		if $coyotetimer.is_stopped() and coyote_timer_active:
-			$coyotetimer.start()
 
-
-	if Input.is_action_just_pressed(\"space\"):
-		if coyote_timer_active or is_on_floor():
-			velocity.y = velocidad_de_salto
-			coyote_timer_active = false
-	
-		elif salto_doble > 0:
-			velocity.y = velocidad_de_salto
-			salto_doble -=1
-
+	caminar()
 	move_and_slide()
 
-
-func _on_coyotetimer_timeout() -> void:
-	coyote_timer_active = false
-
+	if Input.is_action_just_pressed(\"space\") and is_on_floor():
+		velocity.y = velocidad_de_salto
 
 func _input(event) -> void: 
 	mover_camara(event)
 
 func caminar():
 	direccion = transform.basis * Vector3(Input.get_axis(\"a\",\"d\"), 0, Input.get_axis(\"w\", \"s\")).normalized()
-
+	
 	velocity.x = direccion.x * velocidad  
 	velocity.z = direccion.z * velocidad 
 
@@ -68,13 +45,6 @@ func mover_camara(event):
 		camara.rotate_x(-event.relative.y * sensibilidad)
 		camara.rotation.x = clamp(camara.rotation.x, deg_to_rad(-90), deg_to_rad(75))
 
-func maximizar_pantalla():
-	if Input.is_action_just_pressed(\"y\"):
-		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		else:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	
 func ocultar_raton():
 	if Input.is_action_just_pressed(\"q\"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -85,9 +55,6 @@ func ocultar_raton():
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tsy18"]
 height = 1.9697266
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tsy18"]
-size = Vector3(1.0927734, 0.18652344, 1.1025391)
 
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=924079880]
 collision_mask = 2
@@ -106,13 +73,3 @@ fov = 68.0
 
 [node name="Node3D" parent="head" unique_id=1015431444 instance=ExtResource("1_3vyb7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.6418695)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1960346961]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.044081688, -0.015136719)
-shape = SubResource("BoxShape3D_tsy18")
-
-[node name="coyotetimer" type="Timer" parent="." unique_id=1693370046]
-wait_time = 0.32
-one_shot = true
-
-[connection signal="timeout" from="coyotetimer" to="." method="_on_coyotetimer_timeout"]
