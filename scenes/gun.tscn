@@ -124,13 +124,16 @@ offset_top = -185.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control" unique_id=1086153266]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control" unique_id=1432425379]
+layout_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control/GridContainer" unique_id=1086153266]
 texture_filter = 1
 position = Vector2(-96.50003, -19.499983)
 scale = Vector2(6.108333, 5.708333)
 texture = ExtResource("1_vk1bi")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Sprite2D" unique_id=2057686504]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/GridContainer/Sprite2D" unique_id=2057686504]
 libraries/ = SubResource("AnimationLibrary_6b133")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1874595789]
