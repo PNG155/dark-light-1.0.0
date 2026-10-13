@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://hxpokw20mpa1"]
+
+[ext_resource type="Script" uid="uid://bvt7q21uult4b" path="res://scripts/camara_start.gd" id="1_0auqf"]
+[ext_resource type="Texture2D" uid="uid://hljkfpw8expf" path="res://sprites/fondo/1.png" id="1_bodal"]
+[ext_resource type="Texture2D" uid="uid://wydepgxov6qw" path="res://sprites/fondo/2.png" id="2_kdmts"]
+[ext_resource type="Texture2D" uid="uid://c133kxuydhmyv" path="res://sprites/fondo/1,5.png" id="3_0auqf"]
+[ext_resource type="PackedScene" uid="uid://ba3c8b0fj312i" path="res://scenes/camara2.tscn" id="4_kdmts"]
+
+[node name="start" type="Node3D" unique_id=1066695006]
+script = ExtResource("1_0auqf")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=270406802]
+transform = Transform3D(13.184364, 1.2718235e-06, 0, -1.1526138e-06, 14.547966, 0, 0, 0, 6.94, 0, 0, -7.0416603)
+texture = ExtResource("1_bodal")
+
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=289394844]
+transform = Transform3D(6.005, 5.2497376e-07, 0, -5.2497376e-07, 6.005, 0, 0, 0, 7.198, 0, 0, -0.41083574)
+texture_filter = 0
+texture = ExtResource("2_kdmts")
+
+[node name="Sprite3D3" type="Sprite3D" parent="." unique_id=742645116]
+transform = Transform3D(6.005, 5.2497376e-07, 0, -5.2497376e-07, 6.005, 0, 0, 0, 7.198, 0, 0, -3.237764)
+texture_filter = 0
+texture = ExtResource("3_0auqf")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=521557158]
+
+[node name="head" type="Node3D" parent="CharacterBody3D" unique_id=1134156623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.6571207)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/head" unique_id=1889199972]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.76781654)
+fov = 43.6
+
+[node name="Node3D" parent="CharacterBody3D/head" unique_id=368973244 instance=ExtResource("4_kdmts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7244673)

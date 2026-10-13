@@ -19,10 +19,6 @@ var coyote_timer_active := true
 func _ready() -> void:
 	puede_mover_camara = true
 
-func _process(_delta):
-	ocultar_raton()
-	maximizar_pantalla()
-
 func _physics_process(delta: float) -> void:
 	caminar()
 
@@ -67,20 +63,6 @@ func mover_camara(event):
 		rotate_y(-event.relative.x * sensibilidad)
 		camara.rotate_x(-event.relative.y * sensibilidad)
 		camara.rotation.x = clamp(camara.rotation.x, deg_to_rad(-90), deg_to_rad(75))
-
-func maximizar_pantalla():
-	if Input.is_action_just_pressed(\"y\"):
-		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		else:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	
-func ocultar_raton():
-	if Input.is_action_just_pressed(\"q\"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 "
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tsy18"]

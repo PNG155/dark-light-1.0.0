@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bvgyeum445sp"]
 
 [ext_resource type="PackedScene" uid="uid://dddcg7snarr28" path="res://scenes/player.tscn" id="1_7fdjr"]
-[ext_resource type="Script" uid="uid://du7751nd6a76l" path="res://scenes/escenario.gd" id="1_xplgj"]
+[ext_resource type="Script" uid="uid://p8ri010bfk0q" path="res://scripts/camera_start.gd" id="1_ptngb"]
 [ext_resource type="AudioStream" uid="uid://bv15bt6amnoem" path="res://music/lluvia1.mp3" id="3_8uq4t"]
 [ext_resource type="AudioStream" uid="uid://ctfsrvn6a0lte" path="res://music/lluvia11.mp3" id="5_7u734"]
 [ext_resource type="AudioStream" uid="uid://d2mkuxq87b4a2" path="res://music/lluvia12.mp3" id="6_8cdja"]
@@ -38,10 +38,14 @@ ssil_radius = 3.96
 ssil_intensity = 1.17
 ssil_sharpness = 1.0
 fog_enabled = true
-fog_light_color = Color(0.50885665, 0.54417044, 0.59910434, 1)
-fog_light_energy = 3.53
-fog_sun_scatter = 0.08
-fog_sky_affect = 0.214
+fog_light_color = Color(0.22080243, 0.24304375, 0.27765125, 1)
+fog_light_energy = 0.75
+fog_sun_scatter = 0.03
+fog_density = 0.001
+fog_sky_affect = 0.116
+adjustment_enabled = true
+adjustment_brightness = 0.89
+adjustment_saturation = 1.11
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_tsy18"]
 dof_blur_far_enabled = true
@@ -71,7 +75,7 @@ stream_10/stream = ExtResource("6_8cdja")
 stream_11/stream = ExtResource("3_8uq4t")
 
 [node name="Node3D" type="Node3D" unique_id=613542987]
-script = ExtResource("1_xplgj")
+script = ExtResource("1_ptngb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2051204301]
 transform = Transform3D(0.50267506, -3.7787416e-08, 0.8644754, -0.8644754, -2.1972623e-08, 0.50267506, 1.8047945e-15, -1, -4.371138e-08, 17.701754, 7.747161, 0)
