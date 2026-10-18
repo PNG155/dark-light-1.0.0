@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6veohqg3jtsj"
-path="res://.godot/imported/Sprite-0001.png-2c4ed6717789ecb669895a778cff3a77.ctex"
+uid="uid://cn281s0ggg0pl"
+path="res://.godot/imported/psicologa.png-a2905b1298e11b6f8ade9c60af6da389.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Sprite-0001.png"
-dest_files=["res://.godot/imported/Sprite-0001.png-2c4ed6717789ecb669895a778cff3a77.ctex"]
+source_file="res://sprites/persons/psicologa.png"
+dest_files=["res://.godot/imported/psicologa.png-a2905b1298e11b6f8ade9c60af6da389.ctex"]
 
 [params]
 

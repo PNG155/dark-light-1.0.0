@@ -5,32 +5,230 @@
 [ext_resource type="Texture2D" uid="uid://wydepgxov6qw" path="res://sprites/fondo/2.png" id="2_kdmts"]
 [ext_resource type="Texture2D" uid="uid://c133kxuydhmyv" path="res://sprites/fondo/1,5.png" id="3_0auqf"]
 [ext_resource type="PackedScene" uid="uid://ba3c8b0fj312i" path="res://scenes/camara2.tscn" id="4_kdmts"]
+[ext_resource type="FontFile" uid="uid://dlb0dedy7x1dj" path="res://text fonts/retro-thing.ttf" id="6_y16t7"]
+[ext_resource type="Script" uid="uid://bwbr7drqiqvgf" path="res://scripts/button1.gd" id="7_4ge6i"]
+[ext_resource type="AudioStream" uid="uid://k5s8feokks85" path="res://music/sounds of a start.mp3" id="8_8itgj"]
+[ext_resource type="Texture2D" uid="uid://cqyrm5mi56rgg" path="res://sprites/luna icon.png" id="8_tn317"]
+[ext_resource type="Texture2D" uid="uid://c48mdskgb0rm0" path="res://sprites/INFO icon.png" id="9_m8nf6"]
+[ext_resource type="Theme" uid="uid://bmq4rv8r2v7db" path="res://sources/MenuButton.tres" id="9_pgjjs"]
+[ext_resource type="Script" uid="uid://bnao48gjfyo4n" path="res://scripts/menu_button.gd" id="11_1nvso"]
+[ext_resource type="Script" uid="uid://c2kwsuof533o2" path="res://scripts/label creation lines.tres.gd" id="12_gsp51"]
+
+[sub_resource type="Environment" id="Environment_y16t7"]
+
+[sub_resource type="Animation" id="Animation_8itgj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../../camara2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.17664027, 7.2982273)]
+}
+
+[sub_resource type="Animation" id="Animation_4ge6i"]
+resource_name = "inicio"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../../camara2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.17664027, 7.2982273), Vector3(0, -0.177, -11.317)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8itgj"]
+_data = {
+&"RESET": SubResource("Animation_8itgj"),
+&"inicio": SubResource("Animation_4ge6i")
+}
 
 [node name="start" type="Node3D" unique_id=1066695006]
 script = ExtResource("1_0auqf")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=270406802]
+[node name="camara2" parent="." unique_id=368973244 instance=ExtResource("4_kdmts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=885410497]
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 513.0
+offset_bottom = 514.0
+scale = Vector2(3.1446378, 1.7997346)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1912854306]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport" unique_id=270406802]
 transform = Transform3D(13.184364, 1.2718235e-06, 0, -1.1526138e-06, 14.547966, 0, 0, 0, 6.94, 0, 0, -7.0416603)
 texture = ExtResource("1_bodal")
 
-[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=289394844]
-transform = Transform3D(6.005, 5.2497376e-07, 0, -5.2497376e-07, 6.005, 0, 0, 0, 7.198, 0, 0, -0.41083574)
+[node name="Sprite3D2" type="Sprite3D" parent="SubViewportContainer/SubViewport" unique_id=289394844]
+transform = Transform3D(7.03, 6.1458206e-07, 0, -6.1458206e-07, 7.03, 0, 0, 0, 8.428, 0, 0, -0.41083574)
 texture_filter = 0
 texture = ExtResource("2_kdmts")
 
-[node name="Sprite3D3" type="Sprite3D" parent="." unique_id=742645116]
+[node name="Sprite3D3" type="Sprite3D" parent="SubViewportContainer/SubViewport" unique_id=742645116]
 transform = Transform3D(6.005, 5.2497376e-07, 0, -5.2497376e-07, 6.005, 0, 0, 0, 7.198, 0, 0, -3.237764)
 texture_filter = 0
 texture = ExtResource("3_0auqf")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=521557158]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="SubViewportContainer/SubViewport" unique_id=521557158]
 
-[node name="head" type="Node3D" parent="CharacterBody3D" unique_id=1134156623]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.6571207)
+[node name="head" type="Node3D" parent="SubViewportContainer/SubViewport/CharacterBody3D" unique_id=1134156623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17664027, 7.2982273)
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/head" unique_id=1889199972]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.76781654)
-fov = 43.6
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/CharacterBody3D/head" unique_id=1889199972]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+environment = SubResource("Environment_y16t7")
+fov = 35.0
 
-[node name="Node3D" parent="CharacterBody3D/head" unique_id=368973244 instance=ExtResource("4_kdmts")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7244673)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/CharacterBody3D/head" unique_id=1398344812]
+libraries/ = SubResource("AnimationLibrary_8itgj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=726417691]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -222.5
+offset_top = -227.5
+offset_right = 222.5
+offset_bottom = 227.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=2147003913]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0.078431375, 1)
+theme_override_colors/font_pressed_color = Color(3.9106236e-08, 0, 0.077462606, 1)
+theme_override_colors/font_hover_color = Color(0.8709063, 4.9093364e-06, 0.48917973, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.5331141, 0, 0.29141456, 1)
+theme_override_colors/font_outline_color = Color(0.89059, 0.89059, 0.8905901, 1)
+theme_override_constants/outline_size = 35
+theme_override_constants/h_separation = 60
+theme_override_constants/icon_max_width = 120
+theme_override_fonts/font = ExtResource("6_y16t7")
+theme_override_font_sizes/font_size = 90
+theme_override_icons/icon = ExtResource("8_tn317")
+text = "PLAY"
+flat = true
+script = ExtResource("7_4ge6i")
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=1028002831]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(3.85046e-07, 0, 0.6856354, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 4.3317675e-07, 0.5015564, 1)
+theme_override_colors/font_outline_color = Color(0.8901961, 0.8901961, 0.8901961, 1)
+theme_override_constants/outline_size = 35
+theme_override_constants/h_separation = -1
+theme_override_constants/icon_max_width = 145
+theme_override_fonts/font = ExtResource("6_y16t7")
+theme_override_font_sizes/font_size = 92
+theme_override_icons/icon = ExtResource("9_m8nf6")
+text = "INFO"
+flat = true
+script = ExtResource("11_1nvso")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=396010994]
+visible = false
+offset_left = 37.00006
+offset_top = 22.0
+offset_right = 881.00006
+offset_bottom = 609.0
+scale = Vector2(0.6307828, 0.75132686)
+mouse_filter = 2
+theme = ExtResource("9_pgjjs")
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=1385311262]
+layout_mode = 2
+theme_override_font_sizes/font_size = 69
+text = "Hi there,
+little creature
+welcome
+to your world.
+You can hide 
+the mouse 
+by pressing \"Q,\"
+and
+you can put the 
+full-screen
+mode 
+by pressing \"Y.\""
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("12_gsp51")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=838094800]
+stream = ExtResource("8_8itgj")
+autoplay = true
+parameters/looping = true
+
+[connection signal="animation_finished" from="SubViewportContainer/SubViewport/CharacterBody3D/head/AnimationPlayer" to="VBoxContainer/Button3" method="_on_animation_player_animation_finished"]
+[connection signal="button_down" from="VBoxContainer/Button3" to="VBoxContainer/Button3" method="_on_button_down"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="VBoxContainer/Button2" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="PanelContainer/Label" method="_on_button_2_pressed"]

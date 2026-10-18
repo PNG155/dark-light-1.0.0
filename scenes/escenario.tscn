@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://bvgyeum445sp"]
 
 [ext_resource type="PackedScene" uid="uid://dddcg7snarr28" path="res://scenes/player.tscn" id="1_7fdjr"]
-[ext_resource type="Script" uid="uid://p8ri010bfk0q" path="res://scripts/camera_start.gd" id="1_ptngb"]
 [ext_resource type="AudioStream" uid="uid://bv15bt6amnoem" path="res://music/lluvia1.mp3" id="3_8uq4t"]
 [ext_resource type="AudioStream" uid="uid://ctfsrvn6a0lte" path="res://music/lluvia11.mp3" id="5_7u734"]
 [ext_resource type="AudioStream" uid="uid://d2mkuxq87b4a2" path="res://music/lluvia12.mp3" id="6_8cdja"]
@@ -75,7 +74,6 @@ stream_10/stream = ExtResource("6_8cdja")
 stream_11/stream = ExtResource("3_8uq4t")
 
 [node name="Node3D" type="Node3D" unique_id=613542987]
-script = ExtResource("1_ptngb")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2051204301]
 transform = Transform3D(0.50267506, -3.7787416e-08, 0.8644754, -0.8644754, -2.1972623e-08, 0.50267506, 1.8047945e-15, -1, -4.371138e-08, 17.701754, 7.747161, 0)
